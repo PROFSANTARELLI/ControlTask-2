@@ -72,3 +72,74 @@ tasks.priority só aceita os valores: 'LOW', 'MEDIUM', 'HIGH'.
 ai_usage_logs.feature_used só aceita: 'GENERATE_DESCRIPTION', 'SUGGEST_PRIORITY'.
 
 Exclusão Lógica: O sistema não executará comandos DELETE na tabela tasks. Em vez disso, fará um UPDATE tasks SET is_deleted = TRUE. As listagens comuns e os gráficos do Dashboard devem sempre filtrar por WHERE is_deleted = FALSE.
+
+
+4. DER Textual (Mapeamento de Chaves)
+USERS(id, name, email, password_hash, created_at)
+
+TASKS(id, user_id, title, description, due_date, status, priority, is_ai_prioritized, is_deleted, created_at, updated_at)
+
+user_id referencia USERS(id)
+
+AI_USAGE_LOGS(id, user_id, feature_used, prompt_tokens_estimated, created_at)
+
+user_id referencia USERS(id)
+
+5. Script SQL de Criação (Compatível com SQLite)
+Este script cria as tabelas aplicando todas as restrições de integridade, seguidas pela criação de índices estratégicos para garantir a performance da aplicação.
+
+SQL
+-- Habilitar suporte a Chaves Estrangeiras no SQLite (necessário executar por conexão)
+PRAGMA foreign_keys = ON;
+
+-- 1. Criação da Tabela de Usuários
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Criação da Tabela de Tarefas
+CREATE TABLE tasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description TEXT,
+    due_date DATE NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
+    priority VARCHAR(10) NOT NULL,
+    is_ai_prioritized BOOLEAN NOT NULL DEFAULT 0, -- 0 = False, 1 = True (SQLite usa inteiros para booleanos)
+    is_deleted BOOLEAN NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT chk_status CHECK (status IN ('PENDING', 'IN_PROGRESS', 'COMPLETED')),
+    CONSTRAINT chk_priority CHECK (priority IN ('LOW', 'MEDIUM', 'HIGH'))
+);
+
+-- 3. Criação da Tabela de Histórico/Logs da IA
+CREATE TABLE ai_usage_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    feature_used VARCHAR(30) NOT NULL,
+    prompt_tokens_estimated INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT chk_feature CHECK (feature_used IN ('GENERATE_DESCRIPTION', 'SUGGEST_PRIORITY'))
+);
+
+-- =========================================================================
+-- Otimização: Criação de Índices (Crucial para performance)
+-- =========================================================================
+
+-- Otimiza a busca e filtros de tarefas do usuário ativo ignorando itens deletados (Usado no Dashboard e Listas)
+CREATE INDEX idx_tasks_user_active ON tasks (user_id, is_deleted, due_date);
+
+-- Otimiza a query de verificação do Rate Limit diário de IA (Conta quantos logs o usuário gerou no dia atual)
+CREATE INDEX idx_ai_logs_user_date ON ai_usage_logs (user_id, created_at);
+Justificativa dos Índices Criados:
+idx_tasks_user_active: O Streamlit e o Dashboard vão consultar as tarefas ativas do usuário a todo momento. Esse índice composto garante que o SQLite encontre diretamente as tarefas do user_id onde is_deleted = 0 ordenadas por data, sem precisar escanear a tabela inteira (Full Table Scan).
+
+idx_ai_logs_user_date: Toda vez que o usuário clicar em um botão de IA, o Backend executará uma query de contagem (COUNT) para validar a regra de negócio dos 30 usos diários. Esse índice torna a verificação instantânea.
