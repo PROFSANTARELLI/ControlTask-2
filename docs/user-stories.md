@@ -276,3 +276,73 @@ Baixa
 2. Adoção do Recurso: Mais de 60% dos utilizadores ativos a usar as funcionalidades de
 IA semanalmente.
 3. Satisfação (NPS): Nota superior a 75 pontos na percepção de economia de tempo.
+
+
+
+Abaixo, apresento a especificação detalhada e a representação textual do diagrama.
+
+1. Atores do Sistema
+Usuário: O usuário final do sistema (seja ele o Profissional Sobrecarregado ou a Estudante Autônoma), que gerencia suas próprias tarefas e consome os recursos de IA.
+
+Provedor de IA (Sistema Externo): O serviço externo de LLM (ex: OpenAI API) responsável por processar os prompts e retornar as descrições e prioridades sugeridas de forma assíncrona.
+
+2. Lista e Descrição dos Casos de Uso (UC)
+UC-001: Manter Conta de Usuário
+Descrição: Permite que um visitante se cadastre no sistema informando seus dados básicos (Nome, E-mail e Senha) ou altere suas informações posteriormente.
+
+Pré-condições: O e-mail informado não deve estar cadastrado na base de dados.
+
+Pós-condições: Um novo perfil de usuário é criado e armazenado com senha criptografada.
+
+UC-002: Autenticar Usuário
+Descrição: Permite ao usuário cadastrado realizar o login no sistema web validando suas credenciais.
+
+Pré-condições: O usuário deve possuir uma conta previamente ativa no sistema.
+
+Pós-condições: Uma sessão segura é estabelecida (Token JWT ou Session Cookie) e o usuário é redirecionado ao Dashboard.
+
+UC-003: Criar Tarefa Manualmente
+Descrição: O usuário cria uma nova tarefa preenchendo os campos tradicionais (Título, Descrição, Data de Vencimento e Prioridade) sem o auxílio de automações.
+
+Pré-condições: O usuário deve estar autenticado no sistema; a data de vencimento não pode ser retroativa.
+
+Pós-condições: A tarefa é salva no banco de dados vinculada ao ID do usuário com o status padrão "Pendente".
+
+UC-004: Editar Tarefa
+Descrição: Permite modificar qualquer atributo de uma tarefa existente (incluindo a alteração de status para "Em Andamento" ou "Concluída").
+
+Pré-condições: O usuário deve estar autenticado e a tarefa em questão deve pertencer a ele.
+
+Pós-condições: Os dados da tarefa são atualizados na base de dados e a interface é sincronizada.
+
+UC-005: Excluir Tarefa
+Descrição: Permite a remoção de uma tarefa da visualização ativa do usuário.
+
+Pré-condições: O usuário deve estar autenticado e a tarefa deve pertencer a ele.
+
+Pós-condições: É realizada a exclusão lógica do registro (a tarefa deixa de ser exibida, mas o histórico para métricas é preservado).
+
+UC-006: Visualizar Dashboard
+Descrição: O sistema renderiza gráficos de produtividade, totalizadores de tarefas e a listagem de prioridades do dia atual.
+
+Pré-condições: O usuário deve estar autenticado.
+
+Pós-condições: As informações estatísticas atualizadas são exibidas na tela inicial.
+
+UC-007: Solicitar Geração de Descrição via IA (<<extend>> do UC-003 / UC-004)
+Descrição: O usuário solicita que o sistema utilize inteligência artificial para criar um detalhamento de subtarefas/passos a partir do título fornecido.
+
+Pré-condições: O usuário deve ter inserido um título válido no formulário de tarefa e não ter excedido o limite diário de 30 requisições de IA.
+
+Pós-condições: O Provedor de IA retorna o texto estruturado, o campo de descrição é preenchido automaticamente e o contador de uso diário do usuário é incrementado.
+
+UC-008: Solicitar Sugestão de Prioridade via IA (<<extend>> do UC-003 / UC-004)
+Descrição: O sistema envia o contexto da tarefa para a IA analisar e sugerir a classificação de prioridade ideal (Alta, Média ou Baixa).
+
+Pré-condições: O formulário da tarefa deve ter contexto mínimo preenchido (Título e/ou Data) e o limite diário de requisições de IA não deve ter sido atingido.
+
+Pós-condições: O campo de prioridade assume o valor sugerido, recebe a marcação visual "Sugerido por IA" e o contador de uso diário do usuário é incrementado.
+
+3. Representação Textual do Diagrama de Casos de Uso (Formato PlantUML)
+Você pode copiar o código abaixo e colá-lo diretamente em qualquer ferramenta que suporte PlantUML (como o PlantText) para gerar o diagrama visual automaticamente:
+
