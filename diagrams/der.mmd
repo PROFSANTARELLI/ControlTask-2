@@ -1,0 +1,33 @@
+erDiagram
+    USERS {
+        INTEGER id PK
+        VARCHAR name
+        VARCHAR email UK
+        VARCHAR password_hash
+        TIMESTAMP created_at
+    }
+    
+    TASKS {
+        INTEGER id PK
+        INTEGER user_id FK
+        VARCHAR title
+        TEXT description
+        DATE due_date
+        VARCHAR status
+        VARCHAR priority
+        BOOLEAN is_ai_prioritized
+        BOOLEAN is_deleted
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    AI_USAGE_LOGS {
+        INTEGER id PK
+        INTEGER user_id FK
+        VARCHAR feature_used
+        INTEGER prompt_tokens_estimated
+        TIMESTAMP created_at
+    }
+
+    USERS ||--o{ TASKS : "possui"
+    USERS ||--o{ AI_USAGE_LOGS : "consome"
