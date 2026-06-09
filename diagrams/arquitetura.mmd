@@ -1,0 +1,29 @@
+graph TD
+    subgraph Client [Camada de Apresentação - Frontend]
+        ST[Streamlit App] --> Views[Views / Telas]
+        Views --> ClientAPI[Client API / Requests]
+    end
+
+    subgraph Server [Camada de Aplicação - Backend FastAPI]
+        ClientAPI --> |HTTP / JSON| Routers[Routers / Endpoints]
+        
+        subgraph Camada de Negócio
+            Routers --> Controllers[Controllers / Services]
+            Controllers --> IAService[Gemini IA Service]
+        end
+
+        subgraph Camada de Persistência
+            Controllers --> Repositories[Repositories / Camada de Acesso a Dados]
+            Repositories --> Models[SQLAlchemy Models]
+            Models --> DB[(SQLite Database)]
+        end
+    end
+
+    subgraph External [Serviços Externos]
+        IAService --> |Google GenAI SDK| Gemini[Google AI Studio / Gemini]
+    end
+
+    style ST fill:#FF4B4B,stroke:#333,stroke-width:2px,color:#fff
+    style Routers fill:#059669,stroke:#333,stroke-width:2px,color:#fff
+    style DB fill:#1E3A8A,stroke:#333,stroke-width:2px,color:#fff
+    style Gemini fill:#4285F4,stroke:#333,stroke-width:2px,color:#fff
