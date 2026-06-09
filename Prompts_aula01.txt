@@ -1,0 +1,235 @@
+Prompt 1 – Analista de Requisitos
+Atue como um Analista de Requisitos Sênior com mais de 20 anos de experiência em Engenharia de Software.
+
+Vamos construir uma aplicação chamada ControlTask.
+
+Objetivo:
+Criar um sistema web para gerenciamento de tarefas pessoais utilizando Inteligência Artificial.
+
+A aplicação permitirá:
+
+- Cadastro de usuários
+- Login
+- Cadastro de tarefas
+- Edição de tarefas
+- Exclusão de tarefas
+- Dashboard de acompanhamento
+- Sugestão automática de prioridade utilizando IA
+- Geração automática de descrição de tarefas utilizando IA
+
+Sua missão é produzir:
+
+1. Visão do Produto
+2. Objetivos de Negócio
+3. Perfis de Usuário
+4. Requisitos Funcionais
+5. Requisitos Não Funcionais
+6. Regras de Negócio
+7. Premissas
+8. Restrições
+9. Critérios de Sucesso
+
+Organize a resposta em formato profissional e adequado para documentação de projeto.
+Prompt 2 – Product Owner (User Stories)
+Atue como Product Owner especialista em Scrum e Agile.
+
+Com base nos requisitos do sistema ControlTask, gere uma lista completa de User Stories.
+
+Para cada User Story apresente:
+
+- ID
+- Título
+- História no formato:
+
+Como [tipo de usuário]
+Quero [funcionalidade]
+Para [benefício]
+
+- Critérios de Aceitação
+- Prioridade (Alta, Média ou Baixa)
+
+Organize em formato de tabela.
+
+Ao final, identifique o MVP (Produto Mínimo Viável) para a primeira versão da aplicação.
+Prompt 3 – Casos de Uso
+Atue como especialista em UML e Engenharia de Software.
+
+Com base nos requisitos do sistema ControlTask:
+
+- Identifique os atores do sistema
+- Liste todos os casos de uso
+- Descreva cada caso de uso
+- Informe pré-condições
+- Informe pós-condições
+
+Ao final:
+
+1. Apresente uma tabela completa dos casos de uso.
+2. Gere um diagrama de casos de uso utilizando sintaxe Mermaid.
+3. Explique rapidamente o papel de cada ator dentro do sistema.
+Prompt 4 – Product Backlog
+Atue como Product Manager especialista em desenvolvimento de produtos digitais.
+
+Utilizando os requisitos e User Stories do projeto ControlTask:
+
+Monte um Product Backlog utilizando a técnica MoSCoW.
+
+Classifique cada item como:
+
+- Must Have
+- Should Have
+- Could Have
+- Won't Have
+
+Para cada item apresente:
+
+- ID
+- Funcionalidade
+- Descrição
+- Categoria MoSCoW
+- Justificativa
+
+Organize em formato de tabela.
+
+Ao final proponha a ordem ideal de implementação para as próximas aulas.
+Prompt 5 – Arquitetura da Solução
+Atue como Arquiteto de Software Sênior.
+
+Projete a arquitetura do sistema ControlTask considerando:
+
+Frontend:
+- Streamlit
+
+Backend:
+- FastAPI
+
+Banco de Dados:
+- SQLite
+
+ORM:
+- SQLAlchemy
+
+Inteligência Artificial:
+- Google AI Studio (Gemini)
+
+Versionamento:
+- Git e GitHub
+
+Sua resposta deve conter:
+
+1. Arquitetura em Camadas
+2. Componentes da Solução
+3. Responsabilidades de cada camada
+4. Fluxo de comunicação
+5. Boas práticas arquiteturais
+6. Estrutura de diretórios recomendada
+
+Ao final gere:
+
+- Diagrama de Arquitetura em Mermaid
+- Fluxo de Navegação em Mermaid
+- Estrutura de Pastas do Projeto
+Prompt 6 – Modelo de Dados
+Atue como Especialista em Banco de Dados Relacional.
+
+Projete o modelo de dados do sistema ControlTask.
+
+O sistema possui:
+
+- Cadastro de usuários
+- Login
+- Cadastro de tarefas
+- Edição de tarefas
+- Exclusão de tarefas
+- Sugestão de prioridade por IA
+- Geração de descrição por IA
+- Histórico das interações com IA
+
+Sua resposta deve conter:
+
+1. Entidades
+2. Atributos
+3. Chaves Primárias
+4. Chaves Estrangeiras
+5. Relacionamentos
+6. Regras de Integridade
+
+Ao final gere:
+
+- DER textual
+- Script SQL inicial
+- Diagrama Entidade-Relacionamento em Mermaid ER
+Prompt 7 – Estrutura do Repositório GitHub
+Atue como Tech Lead responsável pela organização do projeto.
+
+Com base na arquitetura do ControlTask, proponha a estrutura inicial do repositório GitHub.
+
+Considere:
+
+- Documentação do projeto
+- Diagramas Mermaid
+- Código Frontend
+- Código Backend
+- Banco de Dados
+- Testes
+- Integração futura com IA
+- Deploy futuro em Streamlit Community Cloud
+
+Gere:
+
+1. Estrutura completa de diretórios.
+2. README inicial.
+3. Arquivo .gitignore adequado para Python.
+4. Convenções de nomenclatura.
+5. Estratégia de branches recomendada para o curso.
+Prompt 8 – Geração dos Diagramas Mermaid
+Atue como Arquiteto de Soluções.
+
+Com base em todos os artefatos do projeto ControlTask já definidos, gere exclusivamente os diagramas Mermaid abaixo:
+
+1. Diagrama de Casos de Uso
+2. Diagrama de Arquitetura da Solução
+3. Fluxo de Navegação da Aplicação
+4. Diagrama Entidade-Relacionamento (DER)
+
+Importante:
+
+- Utilize apenas sintaxe Mermaid válida.
+- Cada diagrama deve estar separado.
+- Inclua títulos e comentários para facilitar entendimento.
+- Não explique os diagramas. Apenas gere os códigos Mermaid.
+Prompt 9 – Consolidação Final da Aula
+Atue como Consultor de Engenharia de Software.
+
+Consolide todos os artefatos produzidos para o projeto ControlTask em um único documento profissional.
+
+O documento deve conter:
+
+1. Visão do Produto
+2. Objetivos de Negócio
+3. Personas
+4. Requisitos Funcionais
+5. Requisitos Não Funcionais
+6. Regras de Negócio
+7. User Stories
+8. Casos de Uso
+9. Product Backlog
+10. Arquitetura da Solução
+11. Modelo de Dados
+12. DER
+13. Roadmap de Desenvolvimento
+14. Próximos Passos para Aula 2
+
+Organize a resposta como uma Especificação de Requisitos de Software (ERS/SRS) simplificada.
+
+O documento deve ficar pronto para ser armazenado no GitHub dentro da pasta docs/.
+Sequência Recomendada Durante a Aula
+Prompt 1 → Requisitos
+Prompt 2 → User Stories
+Prompt 3 → Casos de Uso
+Prompt 4 → Backlog
+Prompt 5 → Arquitetura
+Prompt 6 → Modelo de Dados
+Prompt 7 → GitHub
+Prompt 8 → Diagramas Mermaid
+Prompt 9 → Documento Consolidado Final
