@@ -1,43 +1,30 @@
-@startuml
-skinparam packageStyle rectangle
-skinparam actorStyle awesome
+---
+title: Caso de Uso - ControlTask
+---
 
-title ControlTask - Diagrama de Casos de Uso (UML)
+flowchart LR
 
-left to right direction
+    U[Usuário]
 
-actor "Usuário" as user
-actor "Provedor de IA" as ia << Sistema Externo >>
+    UC1((Cadastrar Usuário))
+    UC2((Realizar Login))
+    UC3((Cadastrar Tarefa))
+    UC4((Editar Tarefa))
+    UC5((Excluir Tarefa))
+    UC6((Consultar Tarefas))
+    UC7((Visualizar Dashboard))
+    UC8((Gerar Descrição com IA))
+    UC9((Sugerir Prioridade com IA))
 
-rectangle "Sistema ControlTask" {
-    usecase "UC-001: Manter Conta de Usuário" as uc_conta
-    usecase "UC-002: Autenticar Usuário" as uc_login
-    usecase "UC-003: Criar Tarefa Manualmente" as uc_criar
-    usecase "UC-004: Editar Tarefa" as uc_editar
-    usecase "UC-005: Excluir Tarefa" as uc_excluir
-    usecase "UC-006: Visualizar Dashboard" as uc_dash
-    
-    usecase "UC-007: Solicitar Geração de Descrição via IA" as uc_ia_desc
-    usecase "UC-008: Solicitar Sugestão de Prioridade via IA" as uc_ia_prio
-}
+    U --- UC1
+    U --- UC2
+    U --- UC3
+    U --- UC4
+    U --- UC5
+    U --- UC6
+    U --- UC7
+    U --- UC8
+    U --- UC9
 
-' Associações dos Atores com os Casos de Uso Principais
-user --> uc_conta
-user --> uc_login
-user --> uc_criar
-user --> uc_editar
-user --> uc_excluir
-user --> uc_dash
-
-' Relacionamentos de Extensão (IA é opcional ao criar ou editar)
-uc_ia_desc .--> uc_criar : <<extend>>
-uc_ia_desc .--> uc_editar : <<extend>>
-
-uc_ia_prio .--> uc_criar : <<extend>>
-uc_ia_prio .--> uc_editar : <<extend>>
-
-' Interação com o Sistema Externo de IA
-uc_ia_desc --> ia
-uc_ia_prio --> ia
-
-@enduml
+    UC3 -. include .-> UC8
+    UC3 -. include .-> UC9
