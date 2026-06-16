@@ -1,0 +1,12 @@
+# Ambiente Virtual
+venv/
+.venv/
+env/
+
+# Banco de dados local
+*.db
+backend/controltask.db
+
+# Arquivos temporários do Python e Streamlit
+__pycache__/
+.streamlit/

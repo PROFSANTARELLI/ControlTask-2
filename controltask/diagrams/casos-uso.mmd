@@ -1,0 +1,30 @@
+---
+title: Caso de Uso - ControlTask
+---
+
+flowchart LR
+
+    U[Usuário]
+
+    UC1((Cadastrar Usuário))
+    UC2((Realizar Login))
+    UC3((Cadastrar Tarefa))
+    UC4((Editar Tarefa))
+    UC5((Excluir Tarefa))
+    UC6((Consultar Tarefas))
+    UC7((Visualizar Dashboard))
+    UC8((Gerar Descrição com IA))
+    UC9((Sugerir Prioridade com IA))
+
+    U --- UC1
+    U --- UC2
+    U --- UC3
+    U --- UC4
+    U --- UC5
+    U --- UC6
+    U --- UC7
+    U --- UC8
+    U --- UC9
+
+    UC3 -. include .-> UC8
+    UC3 -. include .-> UC9
