@@ -163,6 +163,7 @@ pip install uvicorn
 pip install sqlalchemy
 pip install streamlit
 pip install requests
+ pip install email_validator
 ```
 
 Gerar requirements.txt
