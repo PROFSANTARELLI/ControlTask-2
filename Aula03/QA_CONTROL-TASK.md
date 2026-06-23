@@ -17,14 +17,23 @@ Cenário: Existe um repositório central chamado: ControlTask
 O tester deverá fazer:
 
 1 - GitHub
+
 2 - Clonar Projeto
+
 3 - Executar Testes Locais
+
 4 - Identificar Problemas
+
 5 - Corrigir Problemas
+
 6 - Executar Novamente
+
 7 - Enviar Alterações
+
 8 - GitHub Actions
+
 9 - Testes Automáticos
+
 
 
 Etapa 1 – Clonar o Projeto
