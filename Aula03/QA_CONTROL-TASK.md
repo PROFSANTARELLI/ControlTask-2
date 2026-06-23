@@ -14,33 +14,23 @@ Ao final da atividade, todo o projeto estará preparado para executar testes aut
 
 Cenário: Existe um repositório central chamado: ControlTask
 
-O tester deverá:
+O tester deverá fazer:
 
-GitHub
-   ↓
-Clonar Projeto
-   ↓
-Executar Testes Locais
-   ↓
-Identificar Problemas
-   ↓
-Corrigir Problemas
-   ↓
-Executar Novamente
-   ↓
-Enviar Alterações
-   ↓
-GitHub Actions
-   ↓
-Testes Automáticos
+1 - GitHub
+2 - Clonar Projeto
+3 - Executar Testes Locais
+4 - Identificar Problemas
+5 - Corrigir Problemas
+6 - Executar Novamente
+7 - Enviar Alterações
+8 - GitHub Actions
+9 - Testes Automáticos
 
 
 Etapa 1 – Clonar o Projeto
-
 Abra o terminal do VS Code.
 
 Execute:
-
 git clone https://github.com/SEU-USUARIO/controltask.git (substitua pelo seu usuário real)
 
 Entre no projeto:
