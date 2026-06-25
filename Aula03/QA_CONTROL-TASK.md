@@ -160,7 +160,7 @@ Resultado esperado:
 
 =================== test session starts ===================
 
-4 passed
+5 passed
 
 =================== 100% ===================
 
