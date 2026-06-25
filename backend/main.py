@@ -104,7 +104,10 @@ def create_task(user_id: int, task: TaskCreate, db: Session = Depends(database.g
         user_id=user_id,
         title=task.title,
         description=task.description,
-        priority=task.priority.upper()
+       if task.priority.upper() not in ["LOW", "MEDIUM", "HIGH"]:
+    raise ValueError("Prioridade inválida")
+
+priority=task.priority.upper()
     )
 
     db.add(db_task)
