@@ -16,7 +16,7 @@ app.add_middleware(
 )
 
 # IMPORTANTE: criar tabelas no startup (CI-safe)
-@app.on_event("startup")
+#@app.on_event("startup")
 def startup():
     models.Base.metadata.create_all(bind=database.engine)
 
@@ -72,7 +72,7 @@ class TaskResponse(BaseModel):
 # USERS
 # =========================
 
-@app.post("/users", response_model=UserResponse, status_code=201)
+#@app.post("/users", response_model=UserResponse, status_code=201)
 def create_user(user: UserCreate, db: Session = Depends(database.get_db)):
     exists = db.query(models.User).filter(models.User.email == user.email).first()
     if exists:
@@ -94,7 +94,7 @@ def create_user(user: UserCreate, db: Session = Depends(database.get_db)):
 # TASKS
 # =========================
 
-@app.post("/users/{user_id}/tasks", response_model=TaskResponse, status_code=201)
+#@app.post("/users/{user_id}/tasks", response_model=TaskResponse, status_code=201)
 def create_task(user_id: int, task: TaskCreate, db: Session = Depends(database.get_db)):
     user = db.query(models.User).filter(models.User.id == user_id).first()
     if not user:
