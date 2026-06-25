@@ -3,7 +3,7 @@
 from typing import List, Optional
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, ConfigDict, EmailStr
 from sqlalchemy.orm import Session
 
 # Ajustado: Importando os módulos internos com o prefixo absoluto do pacote backend
@@ -42,12 +42,11 @@ class UserCreate(BaseModel):
     password: str
 
 class UserResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     name: str
     email: str
-
-    class Config:
-        from_attributes = True # Permite ler dados diretamente do ORM SQLAlchemy
 
 # Schemas para Tarefa
 class TaskCreate(BaseModel):
@@ -62,15 +61,14 @@ class TaskUpdate(BaseModel):
     status: Optional[str] = None # 'PENDING', 'IN_PROGRESS', 'COMPLETED'
 
 class TaskResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     user_id: int
     title: str
     description: Optional[str]
     priority: str
     status: str
-
-    class Config:
-        from_attributes = True
 
 
 # =========================================================================

@@ -6,7 +6,11 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 # 1. Definição do caminho e nome do banco de dados SQLite
 # O banco será criado na raiz do diretório backend como 'controltask.db'
-DATABASE_URL = "sqlite:///./backend/controltask.db"
+# e pode ser sobrescrito por uma variável de ambiente para testes.
+DATABASE_URL = os.getenv(
+    "CONTROLTASK_DATABASE_URL",
+    os.getenv("DATABASE_URL", "sqlite:///./backend/controltask.db"),
+)
 
 # 2. Criação do Engine de Conexão
 # O argumento 'check_same_thread=False' é uma boa prática mandatória para o SQLite 
