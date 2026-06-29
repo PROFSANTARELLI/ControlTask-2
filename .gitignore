@@ -1,0 +1,42 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+*.manifest
+*.spec
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+
+# SQLite database files
+backend/controltask.db
+backend/test_controltask.db
+
+# Streamlit and editor temporary files
+*.log
+*.tmp
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Pytest cache
+.pytest_cache/
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.*
+
+# Backup files
+*~
+*.bak
+*.old
