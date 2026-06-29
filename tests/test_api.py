@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import pytest
 from fastapi.testclient import TestClient
 from backend.main import app
@@ -8,12 +7,9 @@ from uuid import uuid4
 
 from fastapi.testclient import TestClient
 from backend.main import app
->>>>>>> 1090644 (commit no novo repositório)
 
 client = TestClient(app)
 
-
-<<<<<<< HEAD
 @pytest.fixture(autouse=True)
 def clean_db():
     models.Base.metadata.drop_all(bind=database.engine)
@@ -91,7 +87,7 @@ def test_delete_task():
 
     r = client.delete(f"/tasks/{task['id']}")
     assert r.status_code == 204
-=======
+
 def create_user_fixture():
     response = client.post(
         "/users",
@@ -200,4 +196,3 @@ def test_delete_task():
     response = client.delete(f"/tasks/{task_id}")
 
     assert response.status_code == 204
->>>>>>> 1090644 (commit no novo repositório)
