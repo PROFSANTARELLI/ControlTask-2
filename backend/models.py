@@ -26,7 +26,6 @@ class User(Base):
     # todas as suas tarefas serão apagadas automaticamente do banco.
     tasks = relationship("Task", back_populates="owner", cascade="all, delete-orphan")
 
-
 class Task(Base):
     """
     Modelo ORM para a tabela de Tarefas (tasks).
