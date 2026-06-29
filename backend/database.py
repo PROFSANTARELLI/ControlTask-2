@@ -1,25 +1,4 @@
-<<<<<<< HEAD
-import os
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-
-DB_URL = os.getenv("DATABASE_URL", "sqlite:///./controltask.db")
-
-# CI-safe SQLite config
-connect_args = {}
-if DB_URL.startswith("sqlite"):
-    connect_args = {"check_same_thread": False}
-
-engine = create_engine(DB_URL, connect_args=connect_args)
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-Base = declarative_base()
-
-
-=======
 # backend/database.py
-
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
@@ -52,14 +31,9 @@ Base = declarative_base()
 # 5. Função de Injeção de Dependência (Dependency Injection)
 # Esta função será utilizada pelo FastAPI para fornecer uma sessão de banco limpa
 # para cada requisição HTTP e fechá-la automaticamente ao final.
->>>>>>> 1090644 (commit no novo repositório)
 def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
-<<<<<<< HEAD
         db.close()
-=======
-        db.close()
->>>>>>> 1090644 (commit no novo repositório)
