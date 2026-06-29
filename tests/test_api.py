@@ -2,7 +2,7 @@ import pytest
 from fastapi.testclient import TestClient
 from backend.main import app
 from backend import models, database
-=======
+
 from uuid import uuid4
 
 from fastapi.testclient import TestClient
