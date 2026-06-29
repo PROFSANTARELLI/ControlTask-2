@@ -1,14 +1,11 @@
-<<<<<<< HEAD
 fastapi
 uvicorn
 sqlalchemy
 pydantic[email]
-
 pytest
 pytest-cov
 httpx
 anyio
-=======
 anyio==4.14.0
 certifi==2026.6.17
 colorama==0.4.6
