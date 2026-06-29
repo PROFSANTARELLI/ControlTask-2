@@ -1,5 +1,4 @@
 # backend/main.py
-
 from typing import List, Optional
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -29,7 +28,6 @@ app.add_middleware(
 # 2. Criação Automatizada das Tabelas no SQLite
 # Quando o servidor rodar, se as tabelas não existirem, o SQLAlchemy irá criá-las instantaneamente.
 models.Base.metadata.create_all(bind=database.engine)
-
 
 # =========================================================================
 # SCHEMAS DE VALIDAÇÃO (PYDANTIC)
