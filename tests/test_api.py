@@ -68,6 +68,13 @@ def test_list_tasks():
     assert isinstance(response.json(), list)
 
 
+def test_list_tasks_for_unknown_user_returns_404():
+    response = client.get("/users/999999/tasks")
+
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Usuário não encontrado."
+
+
 def test_update_task():
     user = create_user_fixture()
 

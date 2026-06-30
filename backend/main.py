@@ -126,6 +126,10 @@ def create_task(user_id: int, task: TaskCreate, db: Session = Depends(database.g
 @app.get("/users/{user_id}/tasks", response_model=List[TaskResponse], tags=["Tarefas"])
 def read_tasks(user_id: int, db: Session = Depends(database.get_db)):
     """Lista todas as tarefas de um usuário (READ LIST)."""
+    db_user = db.query(models.User).filter(models.User.id == user_id).first()
+    if not db_user:
+        raise HTTPException(status_code=404, detail="Usuário não encontrado.")
+
     tasks = db.query(models.Task).filter(models.Task.user_id == user_id).all()
     return tasks
 
