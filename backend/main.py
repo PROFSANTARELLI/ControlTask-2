@@ -12,7 +12,7 @@ from backend import models
 # 1. Inicialização da API FastAPI
 app = FastAPI(
     title="ControlTask API",
-    description="Backend para gerenciamento de tarefas pessoais com IA",
+    description="Backend para gerenciamento de tarefas pessoais",
     version="1.0.0"
 )
 
